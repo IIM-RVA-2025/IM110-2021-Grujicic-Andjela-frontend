@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+    <span>Pregled Sudova</span>
+  </mat-toolbar>
+  
+  <div class="container mat-elevation-z8">
+    <mat-form-field class="filter-field">
+      <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Pretraži sudove...">
+    </mat-form-field>
+  
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="naziv">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Naziv </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.naziv}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="adresa">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Adresa </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.adresa}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="primary" (click)="openDialog(1)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button color="accent" (click)="openDialog(2, row.id, row.naziv, row.adresa)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="openDialog(3, row.id, row.naziv, row.adresa)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>

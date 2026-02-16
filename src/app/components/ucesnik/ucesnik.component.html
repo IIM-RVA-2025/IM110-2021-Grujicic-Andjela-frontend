@@ -1,0 +1,55 @@
+<div class="container mat-elevation-z8">
+  <div class="container-header">
+    <mat-icon class="header-icon">people</mat-icon>
+    <h2 class="header-title">UPRAVLJANJE UČESNICIMA</h2>
+  </div>
+
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Pretraga učesnika...</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Pretraga">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>IME</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.ime}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="prezime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>PREZIME</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.prezime}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="mbr">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>MBR</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.mbr}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>STATUS</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.status}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary" (click)="openDialog(1)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button color="accent" (click)="openDialog(2, row)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="openDialog(3, row)"><mat-icon>delete</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+</div>

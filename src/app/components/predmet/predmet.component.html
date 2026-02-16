@@ -1,0 +1,67 @@
+<div class="container mat-elevation-z8">
+  <div class="container-header">
+    <mat-icon class="header-icon">gavel</mat-icon>
+    <h2 class="header-title">UPRAVLJANJE PREDMETIMA</h2>
+  </div>
+
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Pretraga predmeta...</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Npr. P-123">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="broj">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>BROJ</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.brojPr}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="opis">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>OPIS</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.opis}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="datum">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>DATUM</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.datum_pocetka | date:'dd.MM.yyyy.'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="aktivan">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>AKTIVAN</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox [checked]="row.aktivan" disabled></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="sud">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>SUD</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.sud?.naziv}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary" (click)="openDialog(1)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button color="accent" (click)="openDialog(2, row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="openDialog(3, row)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

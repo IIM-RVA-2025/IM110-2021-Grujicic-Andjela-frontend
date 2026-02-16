@@ -1,0 +1,131 @@
+.home-wrapper {
+  padding: 30px 20px;
+  background-color: #f4f7f9;
+  min-height: calc(100vh - 70px);
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hero-section h1 {
+  color: #1a237e;
+  font-weight: 300;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+}
+
+/* Stil za statusni baner */
+.status-banner {
+  max-width: 1200px;
+  margin: 0 auto 30px auto;
+  background: white;
+  border-radius: 12px;
+  padding: 15px 25px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+}
+
+.status-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1e3c72;
+}
+
+.user-info p {
+  margin: 0;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+.status-icon {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+  color: #1e3c72;
+}
+
+.system-meta {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.status-tag {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: #4caf50;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-card {
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04) !important;
+  transition: transform 0.2s;
+  border: none !important;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+
+.counter {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 10px 0 0 0;
+}
+
+.card-blue { border-left: 5px solid #1e3c72 !important; }
+.card-pink { border-left: 5px solid #e91e63 !important; }
+.card-yellow { border-left: 5px solid #ffc107 !important; }
+.card-green { border-left: 5px solid #4caf50 !important; }

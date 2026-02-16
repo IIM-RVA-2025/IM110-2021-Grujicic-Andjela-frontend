@@ -1,0 +1,40 @@
+.dialog-container {
+  min-width: 400px;
+  padding: 10px;
+}
+
+.dialog-title {
+  text-align: center;
+  color: #3f51b5;
+  font-weight: bold;
+  margin-bottom: 20px !important;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.delete-title {
+  color: #f44336;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.delete-msg {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 16px;
+}

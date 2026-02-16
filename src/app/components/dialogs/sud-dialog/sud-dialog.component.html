@@ -1,0 +1,34 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title class="dialog-title" *ngIf="flag == 1">NOVI SUD</h2>
+  <h2 mat-dialog-title class="dialog-title" *ngIf="flag == 2">IZMENA SUDA</h2>
+  <h2 mat-dialog-title class="dialog-title delete-title" *ngIf="flag == 3">BRISANJE SUDA</h2>
+
+  <mat-dialog-content class="dialog-content">
+    <form #formControl="ngForm">
+      
+      <div *ngIf="flag != 3" class="form-fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Naziv suda</mat-label>
+          <input matInput [(ngModel)]="data.naziv" name="naziv" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Adresa</mat-label>
+          <input matInput [(ngModel)]="data.adresa" name="adresa" required>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="flag == 3" class="delete-confirmation">
+        <p>Da li ste sigurni da želite da obrišete sud: <strong>{{data.naziv}}</strong>?</p>
+      </div>
+
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-raised-button color="primary" *ngIf="flag == 1" (click)="add()" [disabled]="!formControl.valid">SAČUVAJ</button>
+    <button mat-raised-button color="primary" *ngIf="flag == 2" (click)="update()" [disabled]="!formControl.valid">AŽURIRAJ</button>
+    <button mat-raised-button color="warn" *ngIf="flag == 3" (click)="delete()">OBRIŠI</button>
+    <button mat-button (click)="cancel()">PONIŠTI</button>
+  </mat-dialog-actions>
+</div>

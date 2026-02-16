@@ -1,0 +1,78 @@
+<div class="home-wrapper">
+  <header class="hero-section">
+    <h1>Portal e-Pravosuđe</h1>
+  </header>
+
+  <mat-card class="status-banner">
+    <div class="status-content">
+      <div class="user-info">
+        <mat-icon class="status-icon">info</mat-icon>
+        <div>
+          <h3>Informacioni sistem sudstva</h3>
+          <p>Dobrodošli na centralni panel za upravljanje podacima</p>
+        </div>
+      </div>
+      
+      <div class="system-meta">
+        <div class="meta-item">
+          <mat-icon>schedule</mat-icon>
+          <span>{{ vreme | date:'HH:mm:ss' }}</span>
+        </div>
+        <div class="meta-item">
+          <mat-icon>calendar_today</mat-icon>
+          <span>{{ vreme | date:'dd.MM.yyyy.' }}</span>
+        </div>
+        <div class="meta-item status-tag">
+          <span class="dot"></span>
+          {{ statusSistema }}
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+  <div class="stats-container">
+    <mat-card class="dashboard-card card-blue">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>account_balance</mat-icon>
+        <mat-card-title>SUDOVI</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2 class="counter">{{ brojSudova }}</h2>
+        <p>Aktivni sudovi</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="dashboard-card card-pink">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>assignment</mat-icon>
+        <mat-card-title>PREDMETI</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2 class="counter">{{ brojPredmeta }}</h2>
+        <p>Ukupno predmeta</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="dashboard-card card-yellow">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>event_available</mat-icon>
+        <mat-card-title>ROČIŠTA</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2 class="counter">{{ brojRocista }}</h2>
+        <p>Zakazana ročišta</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="dashboard-card card-green">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>people_alt</mat-icon>
+        <mat-card-title>UČESNICI</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2 class="counter">{{ brojUcesnika }}</h2>
+        <p>Registrovani učesnici</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

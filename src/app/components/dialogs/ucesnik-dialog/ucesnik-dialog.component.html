@@ -1,0 +1,53 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title class="dialog-title" [ngClass]="{'delete-title': flag == 3}">
+    <span *ngIf="flag == 1">Novi učesnik</span>
+    <span *ngIf="flag == 2">Izmena učesnika</span>
+    <span *ngIf="flag == 3">Brisanje učesnika</span>
+  </h2>
+
+  <mat-dialog-content>
+    <form #formControl="ngForm">
+      <div *ngIf="flag != 3" class="form-container">
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Ime</mat-label>
+          <input matInput [(ngModel)]="data.ime" name="ime" required placeholder="Unesite ime">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Prezime</mat-label>
+          <input matInput [(ngModel)]="data.prezime" name="prezime" required placeholder="Unesite prezime">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>MBR</mat-label>
+          <input matInput [(ngModel)]="data.mbr" name="mbr" required maxlength="13" placeholder="Jedinstveni broj">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Status učesnika</mat-label>
+          <input matInput [(ngModel)]="data.status" name="status" placeholder="Npr. Aktivan, Svedok...">
+        </mat-form-field>
+
+      </div>
+
+      <div *ngIf="flag == 3" class="delete-message">
+        <p>Da li ste sigurni da želite da obrišete učesnika:</p>
+        <p><strong>{{data.ime}} {{data.prezime}}</strong>?</p>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="cancel()">PONIŠTI</button>
+
+    <button mat-raised-button color="primary" *ngIf="flag == 1" 
+            (click)="add()" [disabled]="!formControl.valid">SAČUVAJ</button>
+
+    <button mat-raised-button color="primary" *ngIf="flag == 2" 
+            (click)="update()" [disabled]="!formControl.valid">AŽURIRAJ</button>
+
+    <button mat-raised-button color="warn" *ngIf="flag == 3" 
+            (click)="delete()">OBRIŠI</button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,65 @@
+.dialog-container {
+  padding: 10px;
+  min-width: 400px; 
+}
+
+.dialog-title {
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 20px !important;
+}
+
+.delete-title {
+  color: #f44336;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 100%; 
+  margin-bottom: 5px;
+}
+
+.delete-confirmation {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 16px;
+}
+
+.dialog-actions {
+  padding: 15px 0 5px 0;
+  border-top: 1px solid #eee; 
+}
+
+button {
+  margin-left: 8px;
+}
+.dialog-container {
+  min-width: 400px;
+  padding: 10px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkbox-wrapper {
+  margin: 10px 0;
+}
+
+.dialog-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

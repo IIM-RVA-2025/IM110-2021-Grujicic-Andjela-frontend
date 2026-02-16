@@ -1,0 +1,51 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title class="dialog-title" *ngIf="flag == 1">NOVI PREDMET</h2>
+  <h2 mat-dialog-title class="dialog-title" *ngIf="flag == 2">IZMJENA PREDMETA</h2>
+  <h2 mat-dialog-title class="dialog-title delete-title" *ngIf="flag == 3">BRISANJE PREDMETA</h2>
+
+  <mat-dialog-content>
+    <form #formControl="ngForm" class="form-container">
+      
+      <div *ngIf="flag != 3" class="form-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Broj predmeta</mat-label>
+          <input matInput [(ngModel)]="data.brojPr" name="brojPr" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Datum početka</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="data.datum_pocetka" name="datum_pocetka" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Opis</mat-label>
+          <textarea matInput [(ngModel)]="data.opis" name="opis"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nadležni sud</mat-label>
+          <mat-select [(ngModel)]="data.sud" name="sud" [compareWith]="compareSudovi" required>
+            <mat-option *ngFor="let sud of sudovi" [value]="sud">
+              {{sud.naziv}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-checkbox [(ngModel)]="data.aktivan" name="aktivan" color="primary">Aktivan</mat-checkbox>
+      </div>
+
+      <div *ngIf="flag == 3" class="delete-msg">
+        <p>Brisanje predmeta: <strong>{{data.brojPr}}</strong>?</p>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="cancel()">PONIŠTI</button>
+    <button mat-raised-button color="primary" *ngIf="flag == 1" (click)="add()" [disabled]="!formControl.valid">SAČUVAJ</button>
+    <button mat-raised-button color="primary" *ngIf="flag == 2" (click)="update()" [disabled]="!formControl.valid">AŽURIRAJ</button>
+    <button mat-raised-button color="warn" *ngIf="flag == 3" (click)="delete()">OBRIŠI</button>
+  </mat-dialog-actions>
+</div>
