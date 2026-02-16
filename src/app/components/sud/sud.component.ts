@@ -17,6 +17,8 @@ export class SudComponent implements OnInit {
   displayedColumns = ['id', 'naziv', 'adresa', 'actions'];
   dataSource!: MatTableDataSource<Sud>;
 
+  selektovanSud!: Sud;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -24,6 +26,10 @@ export class SudComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+  }
+  
+  public selectRow(row: Sud) {
+    this.selektovanSud = row;
   }
 
   public loadData() {
@@ -48,11 +54,11 @@ export class SudComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-  const filterValue = (event.target as HTMLInputElement).value;
-  this.dataSource.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-  if (this.dataSource.paginator) {
-    this.dataSource.paginator.firstPage();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
-}
 }

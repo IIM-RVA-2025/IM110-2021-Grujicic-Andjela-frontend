@@ -14,11 +14,11 @@ import { UcesnikDialogComponent } from '../dialogs/ucesnik-dialog/ucesnik-dialog
 })
 export class UcesnikComponent implements OnInit {
 
-  
   displayedColumns = ['id', 'ime', 'prezime', 'mbr', 'status', 'actions'];
-  
-  
   dataSource!: MatTableDataSource<Ucesnik>;
+
+  
+  selektovanUcesnik!: Ucesnik;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -29,15 +29,17 @@ export class UcesnikComponent implements OnInit {
     this.loadData();
   }
 
+  
+  public selectRow(row: Ucesnik) {
+    this.selektovanUcesnik = row;
+  }
+
   public loadData() {
     this.ucesnikService.getAllUcesniks().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
-      
-      // Povezujem paginaciju i sortiranje sa podacima
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
-      
       this.dataSource.filterPredicate = (data, filter: string) => {
         const accumulator = (currentTerm: any, key: string) => {
           return key === 'status' ? currentTerm + data.status : currentTerm + data[key as keyof Ucesnik];
@@ -49,7 +51,6 @@ export class UcesnikComponent implements OnInit {
     });
   }
 
-   
   public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -59,7 +60,6 @@ export class UcesnikComponent implements OnInit {
     }
   }
 
-  // Funkcija za otvaranje dijaloga 
   public openDialog(flag: number, row?: Ucesnik) {
     const dialogRef = this.dialog.open(UcesnikDialogComponent, {
       data: row ? { ...row } : new Ucesnik()
